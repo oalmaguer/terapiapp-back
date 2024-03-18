@@ -13,15 +13,10 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  console.log("hgeeee");
-
   res.json("Hello World!");
 });
 app.post("/askAssistant", async (req, res) => {
   const { question } = req.body;
-  console.log(question);
-  const openAIUrl = "https://api.openai.com/v1/engines/davinci/completions";
-  const openAIKey = process.env.OPENAI_API_KEY;
 
   const completion = await openai.chat.completions.create({
     messages: [
@@ -35,11 +30,10 @@ app.post("/askAssistant", async (req, res) => {
     model: "gpt-4-0125-preview",
     response_format: { type: "json_object" },
   });
-  console.log(completion.choices[0].message.content);
 
   res.json(completion.choices[0].message.content);
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
