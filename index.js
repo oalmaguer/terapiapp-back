@@ -6,7 +6,7 @@ const { OpenAI } = require("openai");
 const openai = new OpenAI();
 
 const app = express();
-const PORT = 3000;
+const PORT = 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
@@ -37,3 +37,5 @@ app.post("/askAssistant", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+module.exports = app;
